@@ -53,6 +53,8 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
         .logo-title {
@@ -72,6 +74,7 @@
             font-size: 1.4rem;
             color: #fff;
             box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
+            flex-shrink: 0;
         }
 
         .logo-title h1 {
@@ -158,6 +161,7 @@
             font-size: 1rem;
             outline: none;
             transition: all 0.2s;
+            width: 100%;
         }
 
         .control-group select:focus {
@@ -247,19 +251,9 @@
 
         .options-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 1.25rem;
             margin-bottom: 1.5rem;
-        }
-
-        .options-grid.multi-options {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        @media (max-width: 650px) {
-            .options-grid, .options-grid.multi-options {
-                grid-template-columns: 1fr;
-            }
         }
 
         .option-btn {
@@ -277,6 +271,7 @@
             justify-content: flex-start;
             gap: 12px;
             text-align: right;
+            width: 100%;
         }
 
         .option-btn:hover:not(:disabled) {
@@ -399,6 +394,104 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ====================
+           تنسيقات تجاوب الشاشات (Responsive Design)
+           ==================== */
+
+        /* الشاشات المتوسطة والأجهزة اللوحية (Tablets - حتى 768px) */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.8rem 1rem;
+            }
+
+            .logo-title h1 {
+                font-size: 1rem;
+            }
+
+            .quiz-stats {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .stat-badge {
+                flex: 1;
+                justify-content: center;
+            }
+
+            .container {
+                margin: 1.2rem auto;
+                width: 92%;
+            }
+
+            .start-card, .quiz-card, .result-card {
+                padding: 1.5rem;
+                border-radius: 18px;
+            }
+
+            .question-text {
+                font-size: 1.15rem;
+                min-height: auto;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 12px 20px;
+            }
+
+            .quiz-footer {
+                justify-content: center;
+            }
+        }
+
+        /* الشاشات الصغيرة والهواتف المحمولة (Mobiles - حتى 600px) */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .logo-title {
+                width: 100%;
+            }
+
+            .logo-title h1 {
+                font-size: 0.92rem;
+                line-height: 1.4;
+            }
+
+            .controls-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .option-btn {
+                padding: 1rem;
+                font-size: 0.98rem;
+            }
+
+            .score-circle {
+                width: 110px;
+                height: 110px;
+            }
+
+            .score-num {
+                font-size: 2rem;
+            }
+
+            .result-title {
+                font-size: 1.4rem;
+            }
+
+            .result-msg {
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
@@ -647,7 +740,6 @@
             {"id": 127, "text": "يعتبر القرص الصلب وحدة إدخال وإخراج", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "يتم القراءة منه (إدخال) والكتابة عليه (إخراج)."},
             {"id": 128, "text": "الشبكة التي تربط أجهزة الحاسبات بين المدن والبلدان وحتى القارات هي شبكة WAN", "type": "tf", "answer": true, "category": "الشبكات والإنترنت", "explanation": "Wide Area Network تغطي مساحات شاسعة عالمية."},
 
-            /* الأسئلة الجديدة المضافة من الملف المرفق */
             {"id": 129, "text": "تعتمد الشبكة اللاسلكية على الموجات الكهرومغناطيسية بدلاً من الكابلات في تبادل المعلومات", "type": "tf", "answer": true, "category": "الشبكات والإنترنت", "explanation": "الشبكات اللاسلكية تستخدم ترددات الراديو والموجات الكهرومغناطيسية."},
             {"id": 130, "text": "تعتبر وحدة المعالجة المركزية CPU من أهم وحدات الحاسب وهي تعالج الأوامر وتنفيذ التعليمات", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "CPU هو بمثابة العقل والمدبر لجميع العمليات بالحاسب."},
             {"id": 131, "text": "من طرق حماية أمن المعلومات عمل نسخة احتياطية (Backup) للمعلومات", "type": "tf", "answer": true, "category": "أمن المعلومات", "explanation": "النسخ الاحتياطي يحمي البيانات من الضياع في حال حدوث عطل."},
@@ -659,7 +751,6 @@
             {"id": 137, "text": "برنامج قواعد البيانات (مثل Access) يعتبر من أنظمة التشغيل", "type": "tf", "answer": false, "category": "برامج وتطبيقات", "explanation": "برامج قواعد البيانات هي برامج تطبيقية وليست نظام تشغيل."},
             {"id": 138, "text": "تنتقل الفيروسات من خلال شبكة الحاسب والإنترنت", "type": "tf", "answer": true, "category": "أمن المعلومات", "explanation": "الشبكات والإنترنت هي من أسرع وسائل انتشار البرمجيات الخبيثة."},
             
-            /* أسئلة اختيار من متعدد جديدة */
             {"id": 139, "text": "أداة تمسك باليد تمكنك من تحريك المؤشر على الشاشة:", "type": "mc", "options": ["الميكروفون", "الطابعة", "الفأرة", "السماعات"], "answer": "الفأرة", "category": "المكونات المادية", "explanation": "الفأرة هي وحدة التأشير الرئيسية."},
             {"id": 140, "text": "لا يمكن لفيروسات الحاسب الانتقال عن طريق:", "type": "mc", "options": ["الإنترنت", "الأقراص المرنة", "البريد الإلكتروني", "شاشة الحاسب"], "answer": "شاشة الحاسب", "category": "أمن المعلومات", "explanation": "شاشة الحاسب مجرد وحدة إخراج بصرية لا تنقل الملفات الخبيثة."},
             {"id": 141, "text": "ذاكرة تفقد محتوياتها بمجرد انقطاع التيار الكهربائي:", "type": "mc", "options": ["ROM", "FLASH", "RAM", "MEMORY"], "answer": "RAM", "category": "وحدات القياس والذاكرة", "explanation": "RAM ذاكرة مؤقتة وتتلاشى بياناتها فور انقطاع الكهرباء."},
@@ -727,7 +818,6 @@
             optionsGrid.innerHTML = '';
 
             if (q.type === 'tf') {
-                optionsGrid.className = 'options-grid';
                 optionsGrid.innerHTML = `
                     <button class="option-btn" id="opt-true" onclick="selectAnswer(true)">
                         <span>✅</span> <span>صح (صواب)</span>
@@ -737,7 +827,6 @@
                     </button>
                 `;
             } else if (q.type === 'mc') {
-                optionsGrid.className = 'options-grid multi-options';
                 q.options.forEach((opt, idx) => {
                     const btn = document.createElement('button');
                     btn.className = 'option-btn';
