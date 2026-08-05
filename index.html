@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معهد الشروق الأدنى للتدريب بالرس - أسئلة شاملة إعداد مهندس عمر عابدين</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0f172a;        /* خلفية رئيسية كحلي داكن */
+            --card-bg: #1e293b;       /* لون البطاقات رمادي داكن هادئ */
+            --card-border: #334155;   /* حدود ناعمة */
+            
+            --primary: #38bdf8;       /* أزرق سماوي مريح للعين */
+            --primary-hover: #0284c7;
+            
+            --text-main: #f8fafc;     /* أبيض ناعم للنصوص الرئيسية */
+            --text-sub: #94a3b8;      /* رمادي فاتح للنصوص الثانوية */
+            
+            --success: #4ade80;       /* أخضر هادئ */
+            --success-bg: rgba(74, 222, 128, 0.12);
+            --danger: #f87171;        /* أحمر هادئ */
+            --danger-bg: rgba(248, 113, 113, 0.12);
+            --accent: #fbbf24;        /* ذهبي دافئ للتنبيهات */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .logo-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #0284c7, #6366f1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
+        }
+
+        .logo-title h1 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .quiz-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .stat-badge {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+        }
+
+        .container {
+            max-width: 900px;
+            width: 95%;
+            margin: 2.5rem auto;
+            flex-grow: 1;
+        }
+
+        /* Screen 1: Start Screen */
+        .start-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .start-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .start-card p {
+            color: var(--text-sub);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            text-align: right;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-group label {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            font-weight: 700;
+        }
+
+        .control-group select {
+            background: #0f172a;
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .control-group select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #0284c7, #4f46e5);
+            color: #fff;
+            border: none;
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.3);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(2, 132, 199, 0.45);
+        }
+
+        /* Screen 2: Quiz Play Screen */
+        .quiz-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            display: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            font-weight: 600;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background: #0f172a;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #818cf8);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+        }
+
+        .question-text {
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.65;
+            margin-bottom: 2rem;
+            color: var(--text-main);
+            min-height: 70px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .options-grid.multi-options {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: 650px) {
+            .options-grid, .options-grid.multi-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .option-btn {
+            background: #0f172a;
+            border: 1px solid var(--card-border);
+            padding: 1.25rem 1.5rem;
+            border-radius: 16px;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            text-align: right;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: rgba(56, 189, 248, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .option-btn.correct {
+            background: var(--success-bg) !important;
+            border-color: var(--success) !important;
+            color: var(--success) !important;
+        }
+
+        .option-btn.wrong {
+            background: var(--danger-bg) !important;
+            border-color: var(--danger) !important;
+            color: var(--danger) !important;
+        }
+
+        .explanation-box {
+            background: rgba(251, 191, 36, 0.08);
+            border: 1px dashed rgba(251, 191, 36, 0.4);
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #fde68a;
+            display: none;
+        }
+
+        .quiz-footer {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--card-border);
+        }
+
+        /* Screen 3: Result Screen */
+        .result-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: rgba(56, 189, 248, 0.08);
+            border: 3px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+        }
+
+        .score-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .score-total {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        .result-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .result-msg {
+            color: var(--text-sub);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+
+        .review-list {
+            text-align: right;
+            margin-top: 2rem;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-left: 10px;
+        }
+
+        .review-item {
+            background: #0f172a;
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-item.is-correct { border-right: 4px solid var(--success); }
+        .review-item.is-wrong { border-right: 4px solid var(--danger); }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--card-border);
+            background: rgba(30, 41, 59, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-title">
+            <div class="logo-icon">💻</div>
+            <div>
+                <h1>معهد الشروق الأدنى للتدريب بالرس - أسئلة شاملة إعداد مهندس عمر عابدين</h1>
+                <small style="color: var(--text-sub);">دورات معتمدة (3 و 6 أشهر)</small>
+            </div>
+        </div>
+        <div class="quiz-stats">
+            <div class="stat-badge">
+                <span>الأسئلة:</span>
+                <span id="stat-total-q">143</span>
+            </div>
+            <div class="stat-badge">
+                <span>🏆 النقاط:</span>
+                <span id="stat-score">0</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Start Screen -->
+        <div class="start-card" id="start-screen">
+            <h2>مرحباً بك في بنك الأسئلة الشامل للحاسب الآلي 🚀</h2>
+            <p>يحتوي هذا الاختبار على 143 سؤالاً شاملاً (صح وخطأ واختيار من متعدد) من واقع امتحانات الحاسب الآلي المعتمدة.</p>
+            
+            <div class="controls-grid">
+                <div class="control-group">
+                    <label for="category-select">تصفية حسب القسم:</label>
+                    <select id="category-select">
+                        <option value="all">جميع الأقسام (143 سؤال)</option>
+                        <option value="أساسيات الحاسب">أساسيات الحاسب</option>
+                        <option value="المكونات المادية">المكونات المادية</option>
+                        <option value="أنظمة التشغيل">أنظمة التشغيل</option>
+                        <option value="أنظمة التشغيل - DOS">أوامر DOS</option>
+                        <option value="ويندوز وإدارة الملفات">ويندوز وإدارة الملفات</option>
+                        <option value="برامج وتطبيقات">البرامج والتطبيقات (Word, Excel, etc)</option>
+                        <option value="الشبكات والإنترنت">الشبكات والإنترنت</option>
+                        <option value="أمن المعلومات">أمن المعلومات والوقاية</option>
+                        <option value="وحدات القياس والذاكرة">الذاكرة ووحدات القياس</option>
+                        <option value="لوحة المفاتيح">لوحة المفاتيح والرموز</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="limit-select">عدد الأسئلة:</label>
+                    <select id="limit-select">
+                        <option value="20">20 سؤالاً (اختبار سريع)</option>
+                        <option value="50">50 سؤالاً (اختبار متوسط)</option>
+                        <option value="all" selected>جميع الأسئلة (اختبار كامل)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn" onclick="startQuiz()">
+                <span>ابدأ الاختبار الآن</span>
+                <span>←</span>
+            </button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div class="quiz-card" id="quiz-screen">
+            <div class="progress-header">
+                <span id="question-progress-text">سؤال 1 من 143</span>
+                <span id="quiz-timer">⏱️ 00:00</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+
+            <span class="category-badge" id="category-badge">المكونات المادية</span>
+            <div class="question-text" id="question-text">نص السؤال هنا...</div>
+
+            <div class="options-grid" id="options-grid">
+                <!-- dynamic options generated by JS -->
+            </div>
+
+            <div class="explanation-box" id="explanation-box">
+                <strong>💡 التوضيح العلمي:</strong>
+                <span id="explanation-text"></span>
+            </div>
+
+            <div class="quiz-footer">
+                <button class="btn" id="next-btn" style="display: none;" onclick="nextQuestion()">
+                    <span>السؤال التالي</span>
+                    <span>←</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div class="result-card" id="result-screen">
+            <div class="score-circle">
+                <div class="score-num" id="final-score">0</div>
+                <div class="score-total" id="final-total">من 143</div>
+            </div>
+            <div class="result-title" id="result-title">ممتاز! أداء رائع</div>
+            <p class="result-msg" id="result-msg">لقد أتممت الاختبار بنجاح. يمكنك مراجعة الإجابات أدناه.</p>
+
+            <div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap;">
+                <button class="btn" onclick="restartQuiz()">🔄 إعادة الاختبار</button>
+                <button class="btn" style="background: rgba(255,255,255,0.05); color: var(--text-main); border: 1px solid var(--card-border);" onclick="toggleReview()">📜 مراجعة الإجابات</button>
+            </div>
+
+            <div class="review-list" id="review-list" style="display: none;"></div>
+        </div>
+    </div>
+
+    <footer>
+        تطوير وتجهيز بنك أسئلة الحاسب الآلي الشامل © 2026 - معهد الشروق الأدنى بالرس
+    </footer>
+
+    <script>
+        const allQuestions = [
+            {"id": 1, "text": "ينقسم الحاسب الآلي إلى وحدات إدخال ووحدات إخراج فقط دون معالجة وتخزين", "type": "tf", "answer": false, "category": "أساسيات الحاسب", "explanation": "الحاسب يتكون من وحدات إدخال، إخراج، معالجة، وتخزين."},
+            {"id": 2, "text": "وظيفة المفتاح SHIFT هي نقل المؤشر إلى نهاية الكلمة أو السطر", "type": "tf", "answer": false, "category": "لوحة المفاتيح", "explanation": "مفتاح END هو المسؤول عن الانتقال لنهاية السطر."},
+            {"id": 3, "text": "وظيفة مفتاح HOME هي نقل المؤشر إلى بداية الكلمة أو بداية السطر", "type": "tf", "answer": true, "category": "لوحة المفاتيح", "explanation": "مفتاح HOME ينقل المؤشر إلى بداية السطر."},
+            {"id": 4, "text": "يعتبر نظام Dos من أنظمة التشغيل", "type": "tf", "answer": true, "category": "أنظمة التشغيل", "explanation": "نظام DOS هو نظام تشغيل قديم قائم على الأوامر النصية."},
+            {"id": 5, "text": "امتداد الملف PDF هو ملف من نوع صورة", "type": "tf", "answer": false, "category": "الملفات والامتدادات", "explanation": "امتداد PDF مخصص للوثائق والمستندات المحفوظة."},
+            {"id": 6, "text": "شبكة الاتصال LAN هي مجموعة من أجهزة الحاسب عبر نطاق جغرافي كبير مثل مدينة", "type": "tf", "answer": false, "category": "الشبكات والإنترنت", "explanation": "شبكة LAN محلية (مبنى/مكتب)، بينما WAN أو MAN للمساحات الشاسعة."},
+            {"id": 7, "text": "يشير النطاق EDU في عنوان الإنترنت إلى مؤسسة تعليمية", "type": "tf", "answer": true, "category": "الشبكات والإنترنت", "explanation": "النطاق .edu يُختص بالمؤسسات والجامعات التعليمية."},
+            {"id": 8, "text": "بعد إدخال البيانات إلى جهاز الحاسب يتم حفظها مؤقتاً داخل ذاكرة القراءة ROM", "type": "tf", "answer": false, "category": "وحدات القياس والذاكرة", "explanation": "تُحفظ البيانات مؤقتاً في ذاكرة الوصول العشوائي RAM وليس ROM."},
+            {"id": 9, "text": "تعتبر ذاكرة ROM ذاكرة للقراءة والكتابة", "type": "tf", "answer": false, "category": "وحدات القياس والذاكرة", "explanation": "ذاكرة ROM للقراءة فقط (Read-Only Memory)."},
+            {"id": 10, "text": "عند إغلاق مستعرض الإنترنت فإن الاتصال بالإنترنت ينقطع أيضاً", "type": "tf", "answer": false, "category": "الشبكات والإنترنت", "explanation": "إغلاق المتصفح لا يقطع اتصال الإنترنت للجهاز."},
+            {"id": 11, "text": "يمكن تثبيت أكثر من نظام تشغيل في الحاسب", "type": "tf", "answer": true, "category": "أنظمة التشغيل", "explanation": "يمكن عمل إقلاع متعدد (Dual Boot / Multi Boot)."},
+            {"id": 12, "text": "لاختيار مجموعة من الملفات غير المتجاورة يتم الضغط على مفتاح CTRL", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "مفتاح Ctrl يتيح تحديد عناصر متفرقة، بينما Shift للمتجاورة."},
+            {"id": 13, "text": "يعتبر الميكروفون من وحدات الإخراج", "type": "tf", "answer": false, "category": "المكونات المادية", "explanation": "الميكروفون وحدة إدخال للصوت."},
+            {"id": 14, "text": "تعتبر الطابعة من وحدات الإخراج في الحاسب", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "الطابعة تخرج البيانات النصية والرسومية على الورق."},
+            {"id": 15, "text": "من فوائد استخدام الشبكات هي مشاركة الملفات والأجهزة", "type": "tf", "answer": true, "category": "الشبكات والإنترنت", "explanation": "الشبكات تسمح بمشاركة الموارد كالملفات والطابعات."},
+            {"id": 16, "text": "تقاس سرعة المعالج بالهيرتز (Hertz / GHz)", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "تقاس سرعة المعالج بـ Hertz ومضاعفاتها (GHz)."},
+            {"id": 17, "text": "فتح المرفقات في الرسائل الإلكترونية المجهولة يساعد في انتقال الفيروسات", "type": "tf", "answer": true, "category": "أمن المعلومات", "explanation": "المرفقات المشبوهة سبب رئيسي لإصابة الجهاز بالبرمجيات الخبيثة."},
+            {"id": 18, "text": "يمكن استعادة الملفات الموجودة في سلة المحذوفات", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "سلة المحذوفات تحفظ الملفات مؤقتاً ويمكن استرجاعها."},
+            {"id": 19, "text": "يمكن تصميم الخلفيات باستخدام برنامج الرسام Paint", "type": "tf", "answer": true, "category": "برامج وتطبيقات", "explanation": "يمكن إنشاؤها بالرسام وتعيينها كخلفية للشاشة."},
+            {"id": 20, "text": "لإعادة تسمية الملف نستخدم الأمر REN في موجه الأوامر", "type": "tf", "answer": true, "category": "أنظمة التشغيل - DOS", "explanation": "الأمر REN اختصار لـ Rename."},
+            {"id": 21, "text": "يمكن تشغيل أكثر من برنامج في نفس الوقت في نظام ويندوز", "type": "tf", "answer": true, "category": "أنظمة التشغيل", "explanation": "نظام ويندوز يمتلك خاصية تعدد المهام (Multitasking)."},
+            {"id": 22, "text": "يعتبر برنامج الأوت لوك (Outlook) من برامج إدارة المكاتب والبريد", "type": "tf", "answer": true, "category": "برامج وتطبيقات", "explanation": "Outlook مخصص لإدارة البريد والتقويم والمهام."},
+            {"id": 23, "text": "لا يوجد فرق في استخدام مفتاح Shift أو مفتاح Ctrl عند تحديد الملفات", "type": "tf", "answer": false, "category": "ويندوز وإدارة الملفات", "explanation": "Shift للتحديد المتجاور، و Ctrl للتحديد غير المتجاور."},
+            {"id": 24, "text": "إذا حذفنا اختصار ملف من سطح المكتب يتم حذف الملف الأصلي", "type": "tf", "answer": false, "category": "ويندوز وإدارة الملفات", "explanation": "حذف الاختصار لا يؤثر على الملف الأصلي."},
+            {"id": 25, "text": "الجيجابايت يساوي 1024 بايت", "type": "tf", "answer": false, "category": "وحدات القياس والذاكرة", "explanation": "الجيجابايت = 1024 ميجابايت، بينما البايت = 8 بت."},
+            {"id": 26, "text": "ذاكرة RAM هي ذاكرة للقراءة والكتابة", "type": "tf", "answer": true, "category": "وحدات القياس والذاكرة", "explanation": "RAM (Random Access Memory) تقبل القراءة والتعديل."},
+            {"id": 27, "text": "يستخدم الأمر FORMAT لتهيئة القرص وحذف جميع الملفات بداخله", "type": "tf", "answer": true, "category": "أنظمة التشغيل - DOS", "explanation": "التهيئة Format تعيد إعداد مسارات القرص وتمحو البيانات."},
+            {"id": 28, "text": "يمكن تصميم صفحات الإنترنت باستخدام لغة HTML", "type": "tf", "answer": true, "category": "الشبكات والإنترنت", "explanation": "HTML هي اللغة الأساسية لبناء هياكل صفحات الويب."},
+            {"id": 29, "text": "يستخدم الأمر DATE لتعديل التاريخ في موجه الأوامر", "type": "tf", "answer": true, "category": "أنظمة التشغيل - DOS", "explanation": "أمر DATE يعرض ويعدل تاريخ النظام."},
+            {"id": 30, "text": "تعتبر نظم التشغيل من المكونات المادية للحاسب", "type": "tf", "answer": false, "category": "أنظمة التشغيل", "explanation": "نظام التشغيل مكون برمجي (Software)."},
+            {"id": 31, "text": "تعتبر الفأرة من وحدات الإدخال", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "الفأرة تُدخل إشارات التأشير والنقر."},
+            {"id": 32, "text": "يمكن تحرير وتنسيق النصوص المتقدمة باستخدام برنامج الرسام", "type": "tf", "answer": false, "category": "برامج وتطبيقات", "explanation": "الرسام معالج رسوميات وليس معالج نصوص."},
+            {"id": 33, "text": "تثبيت طابعة جديدة يلغي استخدام الطابعة القديمة وتثبيتها", "type": "tf", "answer": false, "category": "المكونات المادية", "explanation": "يمكن تثبيت عدة طابعات واستخدام أي منها."},
+            {"id": 34, "text": "يمكن تشغيل موجه الأوامر DOS من خلال قائمة ابدأ", "type": "tf", "answer": true, "category": "أنظمة التشغيل", "explanation": "عبر البحث عن cmd أو نافذة التشغيل Run."},
+            {"id": 35, "text": "يستخدم الأمر DEL لحذف الملفات", "type": "tf", "answer": true, "category": "أنظمة التشغيل - DOS", "explanation": "الأمر DEL (Delete) يحذف الملفات المحددة."},
+            {"id": 36, "text": "يُعد برنامج الرسام من البرامج الملحقة في ويندوز", "type": "tf", "answer": true, "category": "برامج وتطبيقات", "explanation": "الرسام يأتي مدمجاً مع نظام ويندوز (Accessories)."},
+            {"id": 37, "text": "تستخدم سلة المحذوفات لحذف واسترجاع الملفات", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "توفر محطة مؤقتة قبل الحذف النهائي."},
+            {"id": 38, "text": "الأمر المستخدم لمسح الشاشة في موجه الأوامر هو CLS", "type": "tf", "answer": true, "category": "أنظمة التشغيل - DOS", "explanation": "CLS اختصار لـ Clear Screen."},
+            {"id": 39, "text": "تسمى عملية إنزال الملفات من الإنترنت Download", "type": "tf", "answer": true, "category": "الشبكات والإنترنت", "explanation": "Download هو التنزيل من الخادم للجهاز الشخصي."},
+            {"id": 40, "text": "يستخدم الأمر MD لإنشاء مجلد (فهرس) جديد", "type": "tf", "answer": true, "category": "أنظمة التشغيل - DOS", "explanation": "MD اختصار لـ Make Directory."},
+            {"id": 41, "text": "البايت الواحد في ذاكرة الحاسب يساوي 8 بت", "type": "tf", "answer": true, "category": "وحدات القياس والذاكرة", "explanation": "1 Byte = 8 Bits."},
+            {"id": 42, "text": "الأمر المستخدم لتشغيل البرامج مباشرة هو RUN", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "نافذة التشغيل Run تفيد في فتح البرامج سريعاً."},
+            {"id": 43, "text": "تأخذ الملفات المحفوظة على برنامج وورد امتداد xlsx", "type": "tf", "answer": false, "category": "برامج وتطبيقات", "explanation": "xlsx لإكسل، أما وورد امتداده docx."},
+            {"id": 44, "text": "أصغر وحدة لقياس الذاكرة والبيانات في الحاسب هي البايت", "type": "tf", "answer": false, "category": "وحدات القياس والذاكرة", "explanation": "أصغر وحدة هي البت (Bit)."},
+            {"id": 45, "text": "لا يمكن استخدام القرص الصلب الجديد قبل تهيئته (Format)", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "يجب تهيئة نظام الملفات وتوزيع الأقسام أولاً."},
+            {"id": 46, "text": "يتم ضبط التاريخ والوقت من شريط المهام أو لوحة التحكم", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "كلا المكانين يتيحان الوصول لإعدادات الوقت والتاريخ."},
+            {"id": 47, "text": "يستخدم زر الفأرة الأيمن لعرض القائمة السياقية والخصائص للملف", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "الزر الأيمن يفتح القائمة السريعة (Context Menu)."},
+            {"id": 48, "text": "برنامج المفكرة Notepad يشغل حيزاً كبيراً جداً من الذاكرة", "type": "tf", "answer": false, "category": "برامج وتطبيقات", "explanation": "المفكرة برنامج خفيف جداً وضئيل الحجم."},
+            {"id": 49, "text": "من طرق البحث عن الملفات في ويندوز البحث باستخدام امتداد الملف", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "يمكن البحث مثل (*.docx) لإيجاد كل مستندات وورد."},
+            {"id": 50, "text": "ينتج عن عملية نسخ الملف نسخة مطابقة مع بقاء الأصل", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "النسخ يعيد توليد ملف آخر دون حذف الأصل."},
+            {"id": 51, "text": "المجلد هو حاوية تستوعب عدداً من الملفات والمجلدات", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "المجلد يُستخدم لتنظيم الهيكلية والتخزين."},
+            {"id": 52, "text": "يمكن حذف جميع الرموز من سطح المكتب", "type": "tf", "answer": false, "category": "ويندوز وإدارة الملفات", "explanation": "رموز النظام الأساسية يمكن إخفاؤها ولكن ليس حذف برمجتها من النظام."},
+            {"id": 53, "text": "يمكن أن يصل طول اسم الملف في ويندوز إلى 400 حرف", "type": "tf", "answer": false, "category": "ويندوز وإدارة الملفات", "explanation": "الحد الأقصى لاسم الملف في ويندوز هو 255 حرفاً."},
+            {"id": 54, "text": "تقاس سعة القرص الصلب بالميجاهرتز", "type": "tf", "answer": false, "category": "وحدات القياس والذاكرة", "explanation": "السعة تقاس بالبايت ومضاعفاته (GB, TB)، بينما الميجاهرتز للسرعة."},
+            {"id": 55, "text": "مجلد Documents (المستندات) هو المكان الافتراضي لحفظ ملفات أوفيس", "type": "tf", "answer": true, "category": "برامج وتطبيقات", "explanation": "تطبيقات أوفيس تفتح تلقائياً مجلد المستندات للحفظ."},
+            {"id": 56, "text": "يمكن إنشاء عدة مجلدات فرعية داخل المجلد الواحد", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "التسلسل الهرمي يتيح مجلدات داخلية بلا حدود."},
+            {"id": 57, "text": "يعتبر برنامج إكسل من البرامج الأساسية التي تثبت تلقائياً مع نظام التشغيل", "type": "tf", "answer": false, "category": "برامج وتطبيقات", "explanation": "إكسل من حزمة Microsoft Office المستقلة وليس مدمجاً بـ Windows."},
+            {"id": 58, "text": "لحذف العنصر حذفاً نهائياً دون مروره بسلة المحذوفات نستخدم SHIFT + DEL", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "Shift + Delete يتجاوز سلة المحذوفات."},
+            {"id": 59, "text": "يمكن إنشاء مجلد داخل نافذة 'جهاز الكمبيوتر' الرئيسية مباشرة مع الأقراص", "type": "tf", "answer": false, "category": "ويندوز وإدارة الملفات", "explanation": "نافذة جهاز الكمبيوتر تعرض محركات الأقراص، ويتم الإنشاء داخل القرص."},
+            {"id": 60, "text": "مربعات الحوار (Dialog Boxes) تُستخدم لتبادل المعلومات والتفضيلات مع المستخدم", "type": "tf", "answer": true, "category": "أنظمة التشغيل", "explanation": "تطلب تفاعل المستخدم كالموافقة أو خيارات الطباعة."},
+            {"id": 61, "text": "يمكن ضبط حركة وحساسية الفأرة من لوحة التحكم", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "عبر قسم الفأرة (Mouse Properties)."},
+            {"id": 62, "text": "لا يمكن تقسيم القرص الصلب إلا إلى قسم واحد فقط", "type": "tf", "answer": false, "category": "المكونات المادية", "explanation": "يمكن تقسيم القرص الصلب لعدّة أقسام (C, D, E...)."},
+            {"id": 63, "text": "يمكن تسمية ملفين بنفس الاسم والامتداد داخل نفس المجلد", "type": "tf", "answer": false, "category": "ويندوز وإدارة الملفات", "explanation": "لا يسمح النظام بملفين متطابقين بالاسم والنوع بنفس المجلد."},
+            {"id": 64, "text": "لا يمكن نقل أو نسخ ملفات مباشرة إلى نافذة 'جهاز الكمبيوتر' الرئيسية", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "يجب توجيه الملفات لقرص أو مجلد محدد."},
+            {"id": 65, "text": "إذا تم تعديل التاريخ والوقت لوقت سابق بعض البرامج لا تعمل", "type": "tf", "answer": true, "category": "أنظمة التشغيل", "explanation": "تغيير الوقت يؤثر على الشهادات وتراخيص البرمجيات والشبكة."},
+            {"id": 66, "text": "لتشغيل المفكرة من نافذة Run نكتب الأمر notepad", "type": "tf", "answer": true, "category": "برامج وتطبيقات", "explanation": "notepad هو اسم الملف التنفيذي للمفكرة."},
+            {"id": 67, "text": "من أهم مميزات نظام ويندوز اعتماد الواجهة الرسومية GUI", "type": "tf", "answer": true, "category": "أنظمة التشغيل", "explanation": "GUI تتيح النوافذ والأيقونات بدلاً من الأوامر النصية."},
+            {"id": 68, "text": "إذا تم إخفاء المجلد فإنه لا يمكن إظهاره مرة أخرى إطلاقاً", "type": "tf", "answer": false, "category": "ويندوز وإدارة الملفات", "explanation": "يمكن إظهاره بتفعيل خيار 'عرض الملفات والمجلدات المخفية'."},
+            {"id": 69, "text": "الحافظة (Clipboard) هي مخزن مؤقت للمعلومات التي تم نسخها أو قصها", "type": "tf", "answer": true, "category": "أنظمة التشغيل", "explanation": "تخزن البيانات الملتقطة حتى الصاقها."},
+            {"id": 70, "text": "يمكن أن يحتوي الملف الواحد على عدة ملفات بداخله", "type": "tf", "answer": false, "category": "ويندوز وإدارة الملفات", "explanation": "المجلد هو من يحوي ملفات، أما الملف فهو وحدة بيانات مفردة."},
+            {"id": 71, "text": "لتحديد جميع العناصر في مجلد نستخدم الاختصار CTRL + A", "type": "tf", "answer": true, "category": "لوحة المفاتيح", "explanation": "A تشير إلى Select All."},
+            {"id": 72, "text": "الخيارات الإقليمية واعدادات اللغة تقع داخل لوحة التحكم", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "تسمح بتعديل العملات، التاريخ، واللغات."},
+            {"id": 73, "text": "يعتبر برنامج وورد من أهم البرامج التطبيقية لمعالجة النصوص", "type": "tf", "answer": true, "category": "برامج وتطبيقات", "explanation": "Microsoft Word هو أشهر معالج نصوص تطبيقية."},
+            {"id": 74, "text": "لا يمكن تغيير موضع شريط المهام (Taskbar) في ويندوز", "type": "tf", "answer": false, "category": "ويندوز وإدارة الملفات", "explanation": "يمكن نقله للأعلى أو اليمين أو اليسار أو الأسفل."},
+            {"id": 75, "text": "يمكن تعديل نظام النقر المزدوج إلى نقر مفرد في خيارات المجلد", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "من خيارات المجلد (Folder Options)."},
+            {"id": 76, "text": "تعديل اختصار الملف يؤدي إلى تغيير الملف الأصلي", "type": "tf", "answer": false, "category": "ويندوز وإدارة الملفات", "explanation": "الاختصار مجرد مؤشر مستقل ولا يغير الأصل."},
+            {"id": 77, "text": "يمكن التعرف على خصائص نظام التشغيل والمعالج والذاكرة من خصائص 'جهاز الكمبيوتر'", "type": "tf", "answer": true, "category": "أنظمة التشغيل", "explanation": "تبويب System Properties يعرض معلومات الجهاز والنظام."},
+            {"id": 78, "text": "عند حذف المجلد يتم حذف جميع الملفات والمجلدات التي بداخل تلقائياً", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "حذف الحاوية يؤدي لحذف محتوياتها."},
+            {"id": 79, "text": "يتم حذف محتويات قائمة المستندات الأخيرة (Recent Documents) من شريط المهام أو الخصائص", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "يمكن تنظيف السجل لخصوصية المستخدم."},
+            {"id": 80, "text": "يمكن عمل عملية اللصق (Paste) دون تنفيذ نسخ أو قص سابق", "type": "tf", "answer": false, "category": "ويندوز وإدارة الملفات", "explanation": "أمر اللصق يعتمد على وجود محتوى في الحافظة."},
+            {"id": 81, "text": "لا يمكن تغيير رموز سطح المكتب إطلاقاً", "type": "tf", "answer": false, "category": "ويندوز وإدارة الملفات", "explanation": "يمكن تغيير الأيقونات وتخصيصها بالكامل."},
+            {"id": 82, "text": "يمكن الوصول إلى قارئ الأقراص من خلال 'جهاز الكمبيوتر'", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "النافذة تعرض المحركات الموصولة بالطاقة والجهاز."},
+            {"id": 83, "text": "لا تقدم أنظمة التشغيل الحديثة دعماً كبيراً في الشبكات", "type": "tf", "answer": false, "category": "أنظمة التشغيل", "explanation": "الأنظمة الحديثة متكاملة كلياً مع الشبكات وتقنيات الاتصال."},
+            {"id": 84, "text": "من خيار 'إضافة وإزالة البرامج' يمكن إضافة لغة جديدة للحاسب", "type": "tf", "answer": false, "category": "أنظمة التشغيل", "explanation": "إضافة اللغات تتم عبر 'الخيارات الإقليمية واللغة'."},
+            {"id": 85, "text": "تعتبر عصا الألعاب من أدوات الإخراج في الحاسب", "type": "tf", "answer": false, "category": "المكونات المادية", "explanation": "عصا التحكم هي وحدة إدخال إشارات التوجيه."},
+            {"id": 86, "text": "يتكون الحاسب من مكونات مادية (Hardware) ومكونات برمجية (Software)", "type": "tf", "answer": true, "category": "أساسيات الحاسب", "explanation": "هما الركنان الأساسيان لعمل أي حاسب."},
+            {"id": 87, "text": "من أمثلة وحدات التخزين القرص الصلب Hard Disk", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "القرص الصلب هو وسيط التخزين الرئيسي الدائم."},
+            {"id": 88, "text": "لا يمكن استخدام أكثر من وحدة إخراج في نفس الوقت", "type": "tf", "answer": false, "category": "المكونات المادية", "explanation": "يمكن تشغيل شاشتين وطابعة ومكبر صوت معاً."},
+            {"id": 89, "text": "من أمثلة المكونات المادية الـ Software", "type": "tf", "answer": false, "category": "أساسيات الحاسب", "explanation": "الـ Software هو المكون البرمجي وليس المادي."},
+            {"id": 90, "text": "تعتبر لوحة المفاتيح من وحدات الإدخال", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "لوحة المفاتيح هي وحدة إدخال النصوص والأوامر الأولى."},
+            {"id": 91, "text": "يرمز لوحدة المعالجة المركزية في الحاسب بـ CPA", "type": "tf", "answer": false, "category": "المكونات المادية", "explanation": "رمزها الصحيح هو CPU (Central Processing Unit)."},
+            {"id": 92, "text": "يرمز للفأرة باللغة الإنجليزية بالاسم Mouse", "type": "tf", "answer": true, "category": "أساسيات الحاسب", "explanation": "المصطلح التقني هو Mouse."},
+            {"id": 93, "text": "يمكن الاستفادة من الحاسب بدون وجود نظام تشغيل", "type": "tf", "answer": false, "category": "أنظمة التشغيل", "explanation": "نظام التشغيل هو الوسيط الضروري لتشغيل الأجهزة والبرامج."},
+            {"id": 94, "text": "هناك نوع واحد من أنظمة التشغيل ويطلق عليه Dos", "type": "tf", "answer": false, "category": "أنظمة التشغيل", "explanation": "توجد أنظمة عديدة منها Windows, macOS, Linux, Android."},
+            {"id": 95, "text": "من مستكشف ويندوز يمكن إنشاء مجلد جديد", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "يتيح إنشاء وإدارة الملفات والمجلدات بسهولة."},
+            {"id": 96, "text": "هناك نوعان من الحاسبة في ويندوز قياسية وعلمية", "type": "tf", "answer": true, "category": "برامج وتطبيقات", "explanation": "تتضمن ويندوز النمط القياسي والنمط العلمي والبرمجي."},
+            {"id": 97, "text": "ظهور شاشة الإيقاف (Screen Saver) تعني إغلاق جميع البرامج المفتوحة", "type": "tf", "answer": false, "category": "أنظمة التشغيل", "explanation": "شاشة التوقف لحماية الشاشة والخصوصية والبرامج تظل تعمل خلفها."},
+            {"id": 98, "text": "جعل الطابعة افتراضية يعني أن جميع عمليات الطباعة تتم من خلال هذه الطابعة تلقائياً", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "تكون الخيار الأول دائماً عند إرسال أي مستند للطباعة."},
+            {"id": 99, "text": "لا يمكن نقل صورة من برنامج الرسام لبرنامج الدفتر", "type": "tf", "answer": false, "category": "برامج وتطبيقات", "explanation": "يمكن دمج صور الرسام ونقلها بسهولة عبر الحافظة."},
+            {"id": 100, "text": "البريد الإلكتروني أحد أهم خدمات شبكة الإنترنت", "type": "tf", "answer": true, "category": "الشبكات والإنترنت", "explanation": "يُبادل الرسائل والمستندات عالمياً وسريعاً."},
+            {"id": 101, "text": "الانترنت والانترانت هما مصطلحان لنفس المعنى", "type": "tf", "answer": false, "category": "الشبكات والإنترنت", "explanation": "الإنترنت شبكة عالمية مفتوحة، بينما الإنترانت شبكة خاصة داخلية بمؤسسة."},
+            {"id": 102, "text": "من أشهر محركات البحث ياهو وقوقل", "type": "tf", "answer": true, "category": "الشبكات والإنترنت", "explanation": "محركات للوصول للمعلومات بالمواقع المختلفة."},
+            {"id": 103, "text": "جهاز اللمس (الشاشة التفاعلية) يعتبر من وحدات الإدخال والإخراج معاً", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "تعرض الصورة (إخراج) وتستقبل اللمس (إدخال)."},
+            {"id": 104, "text": "امتداد ملفات وورد هو DOC أو DOCX", "type": "tf", "answer": true, "category": "برامج وتطبيقات", "explanation": "امتداد قياسي لمستندات وورد."},
+            {"id": 105, "text": "من أمثلة امتداد ملف الصور هو JPG", "type": "tf", "answer": true, "category": "برامج وتطبيقات", "explanation": "صيغة مضغوطة قياسية للصور الرقمية."},
+            {"id": 106, "text": "لا يمكن تغيير التعداد النقطي إلى تعداد رقمي في برامج النصوص", "type": "tf", "answer": false, "category": "برامج وتطبيقات", "explanation": "يمكن التبديل بسهولة بنقرة زر من شريط الأدوات."},
+            {"id": 107, "text": "يعتبر جهاز العرض (البروجكتر) من وحدات الإخراج", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "يعرض مخرجات الفيديو على شاشة كبيرة."},
+            {"id": 108, "text": "يمكن استخدام مسجل الصوت بدون تركيب بطاقة الصوت", "type": "tf", "answer": false, "category": "المكونات المادية", "explanation": "بطاقة الصوت هي المسؤول المادي عن تحويل الموجات الصوتية لإشارات رقمية."},
+            {"id": 109, "text": "سعة ذاكرة الشاشة تعكس جودة الألوان والمؤثرات في الحاسب", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "تخزن الأنسجة ودقة الشاشة والتأثيرات Visual Effects."},
+            {"id": 110, "text": "الحد الأقصى لعمل شرائح بوربوينت هو عشرة شرائح", "type": "tf", "answer": false, "category": "برامج وتطبيقات", "explanation": "يمكن إضافة مئات الشرائح بحسب سعة الجهاز والحاجة."},
+            {"id": 111, "text": "يتكون سطح المكتب من شريط المهام والأيقونات وزر ابدأ", "type": "tf", "answer": true, "category": "أنظمة التشغيل", "explanation": "المكونات البصرية الأساسية لسطح مكتب ويندوز."},
+            {"id": 112, "text": "أصبحت سعة القرص الصلب تقاس بالتيرا بايت (TB)", "type": "tf", "answer": true, "category": "وحدات القياس والذاكرة", "explanation": "1 Terabyte = 1024 Gigabytes."},
+            {"id": 113, "text": "يمكن تعديل البيانات المخزنة في ذاكرة ROM بسهولة", "type": "tf", "answer": false, "category": "وحدات القياس والذاكرة", "explanation": "ROM ذاكرة للقراءة فقط ومصممة للحفاظ على برامج الإقلاع ثابتة."},
+            {"id": 114, "text": "يطلق على برنامج الإكسل الجداول الإلكترونية", "type": "tf", "answer": true, "category": "برامج وتطبيقات", "explanation": "Spreadsheet software لمعالجة البيانات الحسابية."},
+            {"id": 115, "text": "مساحة سلة المحذوفات في ويندوز ثابتة لا يمكن تغييرها", "type": "tf", "answer": false, "category": "ويندوز وإدارة الملفات", "explanation": "يمكن تخصيص حجم السلة من خصائص سلة المحذوفات."},
+            {"id": 116, "text": "تقاس دقة الطابعة بالبكسل", "type": "tf", "answer": false, "category": "المكونات المادية", "explanation": "تقاس بوحدة DPI (Dot Per Inch) أي نقطة في البوصة."},
+            {"id": 117, "text": "البرامج التطبيقية مثل وورد يمكن من خلالها عمل برامج نظم تشغيل", "type": "tf", "answer": false, "category": "أنظمة التشغيل", "explanation": "البرامج التطبيقية تعمل فوق نظام التشغيل ولا يمكنها إنشاؤه."},
+            {"id": 118, "text": "وحدة التغذية (Power Supply) بدونها لا يعمل الحاسب", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "يمد القطع بالتيار الكهربائي المستمر المناسب."},
+            {"id": 119, "text": "الاختصار Gov يعني أن الموقع حكومي", "type": "tf", "answer": true, "category": "الشبكات والإنترنت", "explanation": "مخصص للجهات والهيئات الحكومية."},
+            {"id": 120, "text": "لإرسال بحث مكتوب بالحاسب عبر البريد الإلكتروني يمكن إرساله كمرفق", "type": "tf", "answer": true, "category": "الشبكات والإنترنت", "explanation": "ميزة إرفاق الملفات تتيح تبادل الوثائق."},
+            {"id": 121, "text": "توفير البيئة الصحية لاستخدام الحاسب لها تأثير إيجابي لزيادة إنتاجية المستخدم", "type": "tf", "answer": true, "category": "أساسيات الحاسب", "explanation": "مراعاة قواعد Ergonomics تقي الإجهاد وتزيد الكفاءة."},
+            {"id": 122, "text": "كلما زاد عدد البكسل (Pixel) في الشاشة كلما قل وضوح وتفاصيل الصورة", "type": "tf", "answer": false, "category": "المكونات المادية", "explanation": "زيادة عدد البكسلات ترفع دقة ووضوح التفاصيل (Resolution)."},
+            {"id": 123, "text": "ذاكرة القراءة فقط ROM لا تفقد بياناتها المخزنة عند فصل التيار الكهربائي", "type": "tf", "answer": true, "category": "وحدات القياس والذاكرة", "explanation": "هي ذاكرة دائمة (Non-Volatile Memory)."},
+            {"id": 124, "text": "يستخدم مفتاح Print Screen من لوحة المفاتيح لأخذ صورة لشاشة سطح المكتب", "type": "tf", "answer": true, "category": "لوحة المفاتيح", "explanation": "نسخ لقطة الشاشة إلى الحافظة مباشرة."},
+            {"id": 125, "text": "الحاسبات الأسرع في معالجة البيانات الضخمة هي الحاسبات المركزية (Mainframes)", "type": "tf", "answer": true, "category": "أساسيات الحاسب", "explanation": "مصممة للعمليات الهائلة في المؤسسات والبنوك."},
+            {"id": 126, "text": "في الحاسب الشخصي تقاس سعة الذاكرة RAM بالحجم الحالي بالميجابايت MB", "type": "tf", "answer": false, "category": "وحدات القياس والذاكرة", "explanation": "تقاس ذاكرة RAM حالياً بوحدة الجيجابايت GB."},
+            {"id": 127, "text": "يعتبر القرص الصلب وحدة إدخال وإخراج", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "يتم القراءة منه (إدخال) والكتابة عليه (إخراج)."},
+            {"id": 128, "text": "الشبكة التي تربط أجهزة الحاسبات بين المدن والبلدان وحتى القارات هي شبكة WAN", "type": "tf", "answer": true, "category": "الشبكات والإنترنت", "explanation": "Wide Area Network تغطي مساحات شاسعة عالمية."},
+
+            /* الأسئلة الجديدة المضافة من الملف المرفق */
+            {"id": 129, "text": "تعتمد الشبكة اللاسلكية على الموجات الكهرومغناطيسية بدلاً من الكابلات في تبادل المعلومات", "type": "tf", "answer": true, "category": "الشبكات والإنترنت", "explanation": "الشبكات اللاسلكية تستخدم ترددات الراديو والموجات الكهرومغناطيسية."},
+            {"id": 130, "text": "تعتبر وحدة المعالجة المركزية CPU من أهم وحدات الحاسب وهي تعالج الأوامر وتنفيذ التعليمات", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "CPU هو بمثابة العقل والمدبر لجميع العمليات بالحاسب."},
+            {"id": 131, "text": "من طرق حماية أمن المعلومات عمل نسخة احتياطية (Backup) للمعلومات", "type": "tf", "answer": true, "category": "أمن المعلومات", "explanation": "النسخ الاحتياطي يحمي البيانات من الضياع في حال حدوث عطل."},
+            {"id": 132, "text": "من طرق الوقاية من الفيروسات تركيب مضاد فيروسات قوي وتحديثه بشكل دوري", "type": "tf", "answer": true, "category": "أمن المعلومات", "explanation": "التحديث المستمر لمكافح الفيروسات يضمن التعرف على التهديدات الحديثة."},
+            {"id": 133, "text": "يستخدم الأمر قص (Cut) لنقل العنصر من مكان إلى مكان آخر", "type": "tf", "answer": true, "category": "ويندوز وإدارة الملفات", "explanation": "القص ينقل المستند كلياً بعكس النسخ الذي يترك أصلاً."},
+            {"id": 134, "text": "تقع وحدة المعالجة المركزية CPU والذاكرة العشوائية RAM داخل اللوحة الأم (Motherboard)", "type": "tf", "answer": true, "category": "المكونات المادية", "explanation": "اللوحة الأم هي اللوحة الرئيسية التي تتصل بها المعالج والذاكرة."},
+            {"id": 135, "text": "عند ظهور خط أحمر متعرج تحت الكلمة في معالج النصوص فإن ذلك يشير إلى وجود خطأ إملائي", "type": "tf", "answer": true, "category": "برامج وتطبيقات", "explanation": "الخط الأحمر المتعرج يشير للأخطاء الإملائية، بينما الأزرق أو الأخضر للنحوية."},
+            {"id": 136, "text": "تعتبر الكاميرات من وحدات الإخراج", "type": "tf", "answer": false, "category": "المكونات المادية", "explanation": "الكاميرا وحدة إدخال فيديو وصور للجهاز."},
+            {"id": 137, "text": "برنامج قواعد البيانات (مثل Access) يعتبر من أنظمة التشغيل", "type": "tf", "answer": false, "category": "برامج وتطبيقات", "explanation": "برامج قواعد البيانات هي برامج تطبيقية وليست نظام تشغيل."},
+            {"id": 138, "text": "تنتقل الفيروسات من خلال شبكة الحاسب والإنترنت", "type": "tf", "answer": true, "category": "أمن المعلومات", "explanation": "الشبكات والإنترنت هي من أسرع وسائل انتشار البرمجيات الخبيثة."},
+            
+            /* أسئلة اختيار من متعدد جديدة */
+            {"id": 139, "text": "أداة تمسك باليد تمكنك من تحريك المؤشر على الشاشة:", "type": "mc", "options": ["الميكروفون", "الطابعة", "الفأرة", "السماعات"], "answer": "الفأرة", "category": "المكونات المادية", "explanation": "الفأرة هي وحدة التأشير الرئيسية."},
+            {"id": 140, "text": "لا يمكن لفيروسات الحاسب الانتقال عن طريق:", "type": "mc", "options": ["الإنترنت", "الأقراص المرنة", "البريد الإلكتروني", "شاشة الحاسب"], "answer": "شاشة الحاسب", "category": "أمن المعلومات", "explanation": "شاشة الحاسب مجرد وحدة إخراج بصرية لا تنقل الملفات الخبيثة."},
+            {"id": 141, "text": "ذاكرة تفقد محتوياتها بمجرد انقطاع التيار الكهربائي:", "type": "mc", "options": ["ROM", "FLASH", "RAM", "MEMORY"], "answer": "RAM", "category": "وحدات القياس والذاكرة", "explanation": "RAM ذاكرة مؤقتة وتتلاشى بياناتها فور انقطاع الكهرباء."},
+            {"id": 142, "text": "برنامج يستخدم بشكل واسع في الدعاية والإعلانات والمنشورات وتعديل الصور:", "type": "mc", "options": ["فوتوشوب", "فلاش", "FrontPage", "Visual Basic"], "answer": "فوتوشوب", "category": "برامج وتطبيقات", "explanation": "Adobe Photoshop هو البرنامج القياسي للتصميم وتعديل الصور."},
+            {"id": 143, "text": "تعتبر السبورة الذكية (Interactive Whiteboard) من وحدات:", "type": "mc", "options": ["الإدخال فقط", "الإخراج فقط", "الذاكرة", "الإدخال والإخراج معاً"], "answer": "الإدخال والإخراج معاً", "category": "المكونات المادية", "explanation": "تستقبل اللمس والكتابة (إدخال) وتعرض الشاشة (إخراج)."}
+        ];
+
+        let filteredQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+        let timerInterval = null;
+        let secondsElapsed = 0;
+
+        function startQuiz() {
+            const cat = document.getElementById('category-select').value;
+            const limit = document.getElementById('limit-select').value;
+
+            if (cat === 'all') {
+                filteredQuestions = [...allQuestions];
+            } else {
+                filteredQuestions = allQuestions.filter(q => q.category === cat);
+            }
+
+            filteredQuestions.sort(() => Math.random() - 0.5);
+
+            if (limit !== 'all') {
+                filteredQuestions = filteredQuestions.slice(0, parseInt(limit));
+            }
+
+            currentIndex = 0;
+            score = 0;
+            userAnswers = [];
+            secondsElapsed = 0;
+
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'none';
+            document.getElementById('quiz-screen').style.display = 'block';
+
+            document.getElementById('stat-total-q').innerText = filteredQuestions.length;
+            document.getElementById('stat-score').innerText = '0';
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                secondsElapsed++;
+                const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+                const secs = String(secondsElapsed % 60).padStart(2, '0');
+                document.getElementById('quiz-timer').innerText = `⏱️ ${mins}:${secs}`;
+            }, 1000);
+        }
+
+        function loadQuestion() {
+            const q = filteredQuestions[currentIndex];
+            document.getElementById('question-progress-text').innerText = `سؤال ${currentIndex + 1} من ${filteredQuestions.length}`;
+            document.getElementById('progress-bar').style.width = `${((currentIndex) / filteredQuestions.length) * 100}%`;
+            document.getElementById('category-badge').innerText = q.category;
+            document.getElementById('question-text').innerText = `${q.id}. ${q.text}`;
+            
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+
+            if (q.type === 'tf') {
+                optionsGrid.className = 'options-grid';
+                optionsGrid.innerHTML = `
+                    <button class="option-btn" id="opt-true" onclick="selectAnswer(true)">
+                        <span>✅</span> <span>صح (صواب)</span>
+                    </button>
+                    <button class="option-btn" id="opt-false" onclick="selectAnswer(false)">
+                        <span>❌</span> <span>خطأ (خطأ)</span>
+                    </button>
+                `;
+            } else if (q.type === 'mc') {
+                optionsGrid.className = 'options-grid multi-options';
+                q.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.id = `opt-${idx}`;
+                    btn.onclick = () => selectAnswer(opt);
+                    btn.innerHTML = `<span>🔹</span> <span>${opt}</span>`;
+                    optionsGrid.appendChild(btn);
+                });
+            }
+
+            document.getElementById('explanation-box').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'none';
+        }
+
+        function selectAnswer(userChoice) {
+            const q = filteredQuestions[currentIndex];
+            let isCorrect = false;
+
+            if (q.type === 'tf') {
+                isCorrect = (userChoice === q.answer);
+                const btnTrue = document.getElementById('opt-true');
+                const btnFalse = document.getElementById('opt-false');
+
+                btnTrue.disabled = true;
+                btnFalse.disabled = true;
+
+                if (userChoice === true) {
+                    btnTrue.classList.add(isCorrect ? 'correct' : 'wrong');
+                } else {
+                    btnFalse.classList.add(isCorrect ? 'correct' : 'wrong');
+                }
+
+                if (!isCorrect) {
+                    if (q.answer === true) btnTrue.classList.add('correct');
+                    else btnFalse.classList.add('correct');
+                }
+            } else if (q.type === 'mc') {
+                isCorrect = (userChoice === q.answer);
+                q.options.forEach((opt, idx) => {
+                    const btn = document.getElementById(`opt-${idx}`);
+                    btn.disabled = true;
+                    if (opt === userChoice) {
+                        btn.classList.add(isCorrect ? 'correct' : 'wrong');
+                    }
+                    if (!isCorrect && opt === q.answer) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+
+            if (isCorrect) {
+                score++;
+                document.getElementById('stat-score').innerText = score;
+            }
+
+            userAnswers.push({
+                question: q,
+                userChoice: userChoice,
+                isCorrect: isCorrect
+            });
+
+            if (q.explanation) {
+                document.getElementById('explanation-text').innerText = q.explanation;
+                document.getElementById('explanation-box').style.display = 'block';
+            }
+
+            document.getElementById('next-btn').style.display = 'inline-flex';
+        }
+
+        function nextQuestion() {
+            currentIndex++;
+            if (currentIndex < filteredQuestions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            clearInterval(timerInterval);
+            document.getElementById('quiz-screen').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'block';
+
+            const percentage = Math.round((score / filteredQuestions.length) * 100);
+            document.getElementById('final-score').innerText = `${percentage}%`;
+            document.getElementById('final-total').innerText = `${score} من ${filteredQuestions.length} إجابة صحيحة`;
+
+            const title = document.getElementById('result-title');
+            const msg = document.getElementById('result-msg');
+
+            if (percentage >= 90) {
+                title.innerText = "🏆 أداء ممتاز جداً!";
+                msg.innerText = "ما شاء الله! لديك استيعاب كامل لمنهج الحاسب الآلي الشامل.";
+            } else if (percentage >= 75) {
+                title.innerText = "👏 أداء جيد جداً!";
+                msg.innerText = "أجبت بشكل ممتاز، يمكنك إعادتها للتمكن الكامل.";
+            } else if (percentage >= 50) {
+                title.innerText = "👍 نتيجة متوسطة";
+                msg.innerText = "ينصح بمراجعة المفاهيم والأسئلة التي أخطأت بها للتحسين.";
+            } else {
+                title.innerText = "⚠️ تحتاج لمزيد من المراجعة";
+                msg.innerText = "يرجى مراجعة الأسئلة النظرية والمفاهيم ثم إعادة الاختبار مرة أخرى.";
+            }
+
+            buildReviewList();
+        }
+
+        function buildReviewList() {
+            const list = document.getElementById('review-list');
+            list.innerHTML = '';
+
+            userAnswers.forEach((ans, i) => {
+                const item = document.createElement('div');
+                item.className = `review-item ${ans.isCorrect ? 'is-correct' : 'is-wrong'}`;
+                
+                let userText = ans.userChoice;
+                let correctText = ans.question.answer;
+
+                if (ans.question.type === 'tf') {
+                    userText = ans.userChoice ? 'صح' : 'خطأ';
+                    correctText = ans.question.answer ? 'صح' : 'خطأ';
+                }
+
+                item.innerHTML = `
+                    <div style="font-weight: 700; margin-bottom: 6px; color: var(--text-main);">${i + 1}. ${ans.question.text}</div>
+                    <div style="font-size: 0.9rem; color: var(--text-sub);">
+                        إجابتك: <span style="font-weight: bold; color: ${ans.isCorrect ? 'var(--success)' : 'var(--danger)'}">${userText}</span> | 
+                        الإجابة الصحيحة: <span style="font-weight: bold; color: var(--success)">${correctText}</span>
+                    </div>
+                    ${ans.question.explanation ? `<div style="font-size: 0.85rem; color: var(--accent); margin-top: 4px;">💡 ${ans.question.explanation}</div>` : ''}
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function toggleReview() {
+            const list = document.getElementById('review-list');
+            list.style.display = list.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function restartQuiz() {
+            document.getElementById('result-screen').style.display = 'none';
+            document.getElementById('start-screen').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
